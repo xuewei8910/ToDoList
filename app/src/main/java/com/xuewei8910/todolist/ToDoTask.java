@@ -1,5 +1,6 @@
 package com.xuewei8910.todolist;
 
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
@@ -9,6 +10,8 @@ import java.util.Date;
 public class ToDoTask {
     private String content;
     private Calendar deadline;
+    public static SimpleDateFormat dateFormat = new SimpleDateFormat("EEE, MMM dd HH:mm");
+    private long id;
 
 
 
@@ -25,11 +28,23 @@ public class ToDoTask {
         return deadline;
     }
 
+    public String getDeadlineString(){
+        return dateFormat.format(deadline.getTime());
+    }
+
     public void setContent(String content){
         this.content = content;
     }
 
     public void setDeadline(Calendar calendar){
         deadline = calendar;
+    }
+
+    public void setId(long id){
+        this.id = id;
+    }
+
+    public long getId(){
+        return this.id;
     }
 }

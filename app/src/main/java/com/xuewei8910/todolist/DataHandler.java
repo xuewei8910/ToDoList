@@ -11,6 +11,7 @@ public class DataHandler extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "ToDoList.db";
     public static final String TABLE_NAME = "tasks";
+    public static final String COLUMN_ID = "id";
     public static final String COLUMN_TASK = "task";
     public static final String COLUMN_DEADLINE = "deadline";
 
@@ -23,7 +24,8 @@ public class DataHandler extends SQLiteOpenHelper {
         db.execSQL("create table "
         + TABLE_NAME
         + "("
-        + COLUMN_TASK + " text not null"
+        + COLUMN_ID + " integer primary key autoincrement,"
+        + COLUMN_TASK + " text not null,"
         + COLUMN_DEADLINE + " text not null);");
     }
 

@@ -24,6 +24,7 @@ import java.util.GregorianCalendar;
 
 public class MainActivity extends Activity {
 
+    private DataSource dataSource;
     private ArrayList<ToDoTask> tasks;
     private TaskListAdapter taskListAdapter;
     private Context context = this;
@@ -33,7 +34,8 @@ public class MainActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        tasks = new ArrayList<ToDoTask>();
+        dataSource = new DataSource(this);
+        tasks = dataSource.getTasks();
         taskListAdapter = new TaskListAdapter(this, tasks);
         ListView listView = (ListView) findViewById(R.id.listView);
         listView.setAdapter(taskListAdapter);
@@ -69,7 +71,7 @@ public class MainActivity extends Activity {
                                                             calendar.set(Calendar.HOUR_OF_DAY, hourOfDay);
                                                             calendar.set(Calendar.MINUTE, minute);
 
-                                                            tasks.add(0, task);
+                                                            dataSource.addTask(task);
                                                             taskListAdapter.notifyDataSetChanged();
                                                         }
                                                     }, calendar.get(Calendar.HOUR_OF_DAY),
@@ -91,7 +93,7 @@ public class MainActivity extends Activity {
 
 
                 } else {
-                    tasks.remove(position);
+                    dataSource.deleteTask(tasks.get(position));
                     taskListAdapter.notifyDataSetChanged();
                 }
             }
@@ -122,4 +124,6 @@ public class MainActivity extends Activity {
         tasks.add(task);
         taskListAdapter.notifyDataSetChanged();
     }
+
+
 }

@@ -37,6 +37,6 @@ public class ItemView extends RelativeLayout {
 
         content.setText(task.getContent());
         date.setText(task.getDeadline() == null ? "" : "Deadline: " +
-                new SimpleDateFormat("EEE, MMM dd HH:mm").format(task.getDeadline().getTime()));
+                task.getDeadlineString());
     }
 }
